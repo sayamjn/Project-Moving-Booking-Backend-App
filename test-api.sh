@@ -19,7 +19,10 @@ CREATE_RESPONSE=$(curl -s -X POST "$BASE_URL/movies" \
     "language": "English",
     "releaseDate": "1994-09-23",
     "releaseStatus": "RELEASED",
-    "director": "Frank Darabont"
+    "director": "Frank Darabont",
+    "rating": 9.3,
+    "duration": 142,
+    "genre": ["Drama", "Crime"]
   }')
 echo "$CREATE_RESPONSE" | jq '.'
 MOVIE_ID=$(echo "$CREATE_RESPONSE" | jq -r '.data._id')
@@ -48,7 +51,10 @@ curl -s -X PUT "$BASE_URL/movies/$MOVIE_ID" \
     "language": "English",
     "releaseDate": "1994-09-23",
     "releaseStatus": "RELEASED",
-    "director": "Frank Darabont"
+    "director": "Frank Darabont",
+    "rating": 9.5,
+    "duration": 142,
+    "genre": ["Drama", "Crime"]
   }' | jq '.'
 echo ""
 

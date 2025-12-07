@@ -10,7 +10,7 @@ const { sendSuccess, sendError } = require("../utils/responseBody");
 // Create a new movie
 const createMovie = async (req, res) => {
     try {
-        const { name, description, casts, trailerUrl, language, releaseDate, releaseStatus, director } = req.body
+        const { name, description, casts, trailerUrl, language, releaseDate, releaseStatus, director, rating, duration, genre } = req.body
         const movie = await createMovieService({
             name,
             description,
@@ -19,7 +19,10 @@ const createMovie = async (req, res) => {
             language,
             releaseDate,
             releaseStatus,
-            director
+            director,
+            rating,
+            duration,
+            genre
         })
         return sendSuccess(res, 201, "Movie created successfully", movie)
     } catch (error) {
@@ -56,7 +59,7 @@ const getMovieById = async (req, res) => {
 // Update a movie by ID
 const updateMovie = async (req, res) => {
     try {
-        const { name, description, casts, trailerUrl, language, releaseDate, releaseStatus, director } = req.body
+        const { name, description, casts, trailerUrl, language, releaseDate, releaseStatus, director, rating, duration, genre } = req.body
         const movie = await updateMovieService(req.params.id, {
             name,
             description,
@@ -65,7 +68,10 @@ const updateMovie = async (req, res) => {
             language,
             releaseDate,
             releaseStatus,
-            director
+            director,
+            rating,
+            duration,
+            genre
         })
         if (!movie) {
             return sendError(res, 404, "Movie not found")
